@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "whatsapp-clone-8abff"
+    "default": "whatsapp-clone-8abff",
+    "patronus": "patronus-72ce7"
   }
 }

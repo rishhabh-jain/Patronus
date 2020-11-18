@@ -1,15 +1,12 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import Select from '@material-ui/core/Select';
+import SelectCity from './SelectCity'
+import { Link } from 'react-router-dom';
+import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -23,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
         padding: '0 30px',
         //: '0 0px 4px 2px black',
       },
+      link : {
+        textDecoration : 'none'
+      },
       label: {
         '&:hover': {
           
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'capitalize',
         color : 'black ',
         fontWeight : "bold" ,
-        fontSize : 20,
+        fontSize : 17,
         fontFamily : 'Helvetica'
       },
     root: {
@@ -111,7 +111,7 @@ function Header() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <AppBar position="fixed" color="transperent">
+            <AppBar position="fixed" color="transperent" >
                 <Toolbar>
                 {/* <IconButton
                     edge="start"
@@ -125,33 +125,10 @@ function Header() {
                     Material-UI
                 </Typography> */}
                 <div className={classes.left}>
-                <img src="Patronus.png" alt="logo" className={classes.logo} />
-                <Select
-                    // labelId="demo-simple-select-filled-label"
-                    // id="demo-simple-select-filled"
-                    // value={age}
-                    // onChange={handleChange}
-                    defaultValue="5"
-                    >
-                    <MenuItem value="5" variant="filled">
-                    <IconButton>
-                            <SearchIcon/>
-                        </IconButton> New Delhi
-                    </MenuItem>
-                    <MenuItem value={10}>
-                        <IconButton>
-                            <SearchIcon/>
-                        </IconButton>Delhi
-                    </MenuItem>
-                    <MenuItem value={20}>
-                    <IconButton>
-                            <SearchIcon/>
-                    </IconButton>Noida</MenuItem>
-                    <MenuItem value={30}>
-                    <IconButton>
-                            <SearchIcon/>
-                        </IconButton>Gurgaon</MenuItem>
-                    </Select>
+                <Link to="/" className={classes.link}>
+                  <img src="Patronus.png" alt="logo" className={classes.logo} />
+                </Link>
+                <SelectCity/>
                 <div className={classes.search}>
                     <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -167,30 +144,37 @@ function Header() {
                 </div>
                 </div>
                 <div className={classes.right}>
+                <Link to="/donate" className={classes.link}>
                 <Button
                 classes={{
                     root: classes.button, // class name, e.g. `classes-nesting-root-x`
                     label: classes.label, // class name, e.g. `classes-nesting-label-x`
                 }}
                 >
-                    Donation 
+                    Donate 
                 </Button>
+                </Link>
+                <Link to="/help" className={classes.link}>
                 <Button
                 classes={{
                     root: classes.button, // class name, e.g. `classes-nesting-root-x`
                     label: classes.label, // class name, e.g. `classes-nesting-label-x`
                 }}
                 >
-                    Contact Us 
+                    Contact Us
                 </Button>
+                </Link>
+                <Link to="/adopt" className={classes.link}>
                 <Button
                 classes={{
                     root: classes.button, // class name, e.g. `classes-nesting-root-x`
                     label: classes.label, // class name, e.g. `classes-nesting-label-x`
                 }}
                 >
-                    Adoptions 
+                    Adoptions
                 </Button>
+                </Link>
+                <Link to="/partners" className={classes.link}>
                 <Button
                 classes={{
                     root: classes.button, // class name, e.g. `classes-nesting-root-x`
@@ -199,6 +183,7 @@ function Header() {
                 >
                     Partnering NGOs 
                 </Button>
+                </Link>
                 </div>
                 </Toolbar>
             </AppBar>

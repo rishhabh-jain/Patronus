@@ -36,10 +36,15 @@ const useStyles = makeStyles({
     },
     actions : {
       height : 50
+    },
+    breed : {
+        paddingTop : '15px',
+        color : '#3333ff'
     }
   });
 
-function Cardjs({item , isLoading}){
+function AdoptCard({item , isLoading}){
+    const breed =  item.breed
     const classes = useStyles();
     const caption = item.caption
     function capital(title) { return title.charAt(0).toUpperCase() + title.slice(1)}
@@ -106,6 +111,9 @@ function Cardjs({item , isLoading}){
             <Typography variant="body2" color="textSecondary" component="p">
               {capital(caption)}
             </Typography>
+            <Typography variant="h6" align="right" className={classes.breed}>
+              {capital(breed)}
+            </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions
@@ -123,4 +131,4 @@ function Cardjs({item , isLoading}){
     )
 }
 
-export default Cardjs
+export default AdoptCard

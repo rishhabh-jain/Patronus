@@ -1,6 +1,6 @@
 import React , {useState , useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
-import SetCards from './SetCards'
+import SetAdoptCards from './SetAdoptCards'
 import Card from './Cardjs.js'
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme) => ({
         
     }
   }));
-function Post() {
+function AdoptPosts() {
     const classes = useStyles();
     const [items , setItems ] = useState([]);
       const [loading , setLoading ] = useState(true)
     useEffect(()=> {
       const fetchItems = async () =>{
-        const result = await axios(`https://patronusapi.herokuapp.com/rescue/getposts/`)
+        const result = await axios(`https://patronusapi.herokuapp.com/adopt/getposts/`)
         console.log(result.data)
         setItems(result.data)
         setLoading(false)
@@ -44,7 +44,7 @@ function Post() {
 
     return (
         <div className={classes.root}>
-            <SetCards items={items} loading={loading}/>
+            <SetAdoptCards items={items} loading={loading}/>
             {/* <Grid container spacing={1}>
                 <Grid container item xs={12} spacing={1} align="center">
                     <FormRow />
@@ -60,4 +60,4 @@ function Post() {
     )
 }
 
-export default Post
+export default AdoptPosts
