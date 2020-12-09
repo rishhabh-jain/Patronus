@@ -5,6 +5,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -16,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
+  },
+  rootM : {
+    marginTop : '70px', 
+    marginBottom : '100px'
   },
     root: {
       display: 'flex',
@@ -90,9 +95,120 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 function Help() {
+  const matches = useMediaQuery('(max-width:450px)');
     const styles = useStyles()
     const video = 'https://rishhabh-bucket.s3.ap-south-1.amazonaws.com/Untitled+design+(1).mp4'
     const videoSource = "https://www.w3schools.com/tags/movie.mp4"
+    if(matches){
+      return(
+        <div className={styles.rootM}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link color="inherit" href="/" >
+                Patronus
+            </Link>
+            <Typography color="textPrimary">Contact Us </Typography>
+            </Breadcrumbs>
+            <video autoPlay="autoplay" loop="loop" muted className={classes.Video} >
+                <source src={video} type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            
+            <div className={classes.Content}>
+                <div className={classes.SubContent} >
+                
+                </div>
+                {/* <Button  
+                classes={{
+                    root: styles.button, // class name, e.g. `classes-nesting-root-x`
+                    label: styles.label, // class name, e.g. `classes-nesting-label-x`
+                }}
+                size="large"  variant="contained">
+                    Contact Us 
+                </Button> */}
+            </div>
+                {/* <Divider variant="middle" />
+                <Typography variant="h2" align="center" color="black">
+                    Contact Us                
+                </Typography> */}
+                {/* <Divider variant="middle" /> */}
+                <div className = {styles.accord}>
+                <Typography variant="h4" align="center" color="black" className={styles.faqs}>
+                    Some Frequently asked questions                 
+                </Typography>
+                <Accordion className={styles.accordion }>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography className={classes.heading}> FAQ 1 </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                      sit amet blandit leo lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion className={styles.accordion }>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                  >
+                    <Typography className={classes.heading}>FAQ 2</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                      sit amet blandit leo lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion className={styles.accordion }>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography className={classes.heading}> FAQ 4 </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                      sit amet blandit leo lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion className={styles.accordion }>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                  >
+                    <Typography className={classes.heading}>FAQ 5 </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                      sit amet blandit leo lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion disabled className={styles.accordion } >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel3a-content"
+                    id="panel3a-header"
+                  >
+                    <Typography className={classes.heading}>FAQ 3 (only if you have donated some amount )</Typography>
+                  </AccordionSummary>
+                </Accordion>
+                </div>
+                <ContactForm/>
+        </div>
+      )
+    }
     return (
         <div className={styles.root}>
           <Breadcrumbs aria-label="breadcrumb">

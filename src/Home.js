@@ -50,7 +50,7 @@ const useStyles = makeStyles( (theme) => ({
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
-function Home() {
+function Home({items , loading}) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -63,7 +63,7 @@ function Home() {
         <div>
             <header>
                  <Slider/>
-                <Posts/>
+                <Posts items={items} loading={loading}/>
                 <Fab color="secondary" aria-label="add" onClick={handleClickOpen} className={classes.fabButton}>
                         <AddIcon />
                 </Fab>

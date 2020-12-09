@@ -6,7 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import React, { useState , useEffect} from "react";
-import firebase from "./firebase";
 import { storage, db , auth } from "./firebase";
 import { Input, Button } from "@material-ui/core"; 
 import SelectCity from './SelectCity';
@@ -27,8 +26,16 @@ const useStyles = makeStyles((theme)=> ({
 
 function AddPostjs() {
   const [open, setOpen] = React.useState(true);
+  const [id, setId] = useState("")
   useEffect(() => {
-    
+    const fetchItems = async () =>{
+        const result = await axios(`http://localhost:5000/auth/login/success`, {withCredentials:true})
+        const data = result.data ; 
+        const id = data.name._id ; 
+        setId(id)
+        console.log(id)
+      }
+      fetchItems()
   }, [])
   const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
@@ -87,10 +94,10 @@ function AddPostjs() {
                 caption : caption ,
                 location : location ,
                 image : url,
-                name : name , 
+                user : id, 
                 number : number 
                 };
-                axios.post('https://patronusapi.herokuapp.com/rescue/createposts', post)
+                axios.post('http://localhost:5000/rescue/createposts', post)
                 .catch(error => {
                     console.error('There was an error!', error);
                 })
@@ -104,7 +111,7 @@ function AddPostjs() {
                 setProgress(0);
                 setCaption("");
                 setImage(null);
-                setName("");
+                // setName("");
                 setNumber("");
                 setTitle("");
                 setLocation("");
@@ -140,7 +147,7 @@ function AddPostjs() {
                 rows={4}
                 variant="outlined"
             />
-            <TextField required id="standard-required" value={name} onChange={(e) => setName(e.target.value)}className={classes.padding}fullWidth variant="outlined" label="Name"  />
+            {/* <TextField required id="standard-required" value={name} onChange={(e) => setName(e.target.value)}className={classes.padding}fullWidth variant="outlined" label="Name"  /> */}
             <Select
                 // onChange={(e) => setAnimalType(e.target.value)}
                 className={classes.padding}
@@ -158,7 +165,7 @@ function AddPostjs() {
             <Button className="imageupload__button" onClick={handleUpload} className={classes.padding}>
                 Upload
             </Button>
-            <Snackbar open={open} autoHideDuration={400} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
                 Post Added !
               </Alert>

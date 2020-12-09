@@ -50,7 +50,7 @@ function Cardjs({item , isLoading}){
     const month = item.createdAt.substring(5, 7);
     const day = item.createdAt.substring(8,10);
     const year = item.createdAt.substring(0,4)
-    const name = item.name ;
+    const name = item.user.displayName ;
     const [open, setOpen] = React.useState(false);
 
       const handleClickOpen = () => {
@@ -78,8 +78,8 @@ function Cardjs({item , isLoading}){
         <CardActionArea>
           <CardHeader
             avatar={
-              <Avatar aria-label="recipe" className={classes.avatar}>
-                { name.charAt(0).toUpperCase()}
+              <Avatar aria-label="recipe" className={classes.avatar} src={item.user.image}>
+                {/* { name.charAt(0).toUpperCase()} */}
               </Avatar>
             }
             // action={
@@ -87,7 +87,7 @@ function Cardjs({item , isLoading}){
             //     <MoreVertIcon />
             //   </IconButton>
             // }
-            title= { name.toUpperCase()}
+            title= { name.toUpperCase() || 'name'}
             subheader = {(day) + (" ") + (monthNames[month -1 ])  + (" ")+ (year)}
           />
           <CardMedia

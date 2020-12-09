@@ -188,7 +188,7 @@ function AddPostjs() {
             <Button backgroundColor="red" onClick={handleUpload} className={classes.padding}>
                 Upload
             </Button>
-            <Snackbar open={open} autoHideDuration={400} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
                 Post Added !
               </Alert>

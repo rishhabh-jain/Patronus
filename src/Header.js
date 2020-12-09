@@ -1,6 +1,9 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Avatar from '@material-ui/core/Avatar';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import SelectCity from './SelectCity'
 import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
@@ -32,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
         fontWeight : "bold" ,
         fontSize : 17,
         fontFamily : 'Helvetica'
+      },
+      avatar : {
+        width: theme.spacing(7),
+    height: theme.spacing(7),
+        paddingRight : '6px'
       },
     root: {
       flexGrow: 1,
@@ -107,7 +115,19 @@ const useStyles = makeStyles((theme) => ({
         marginBottom  : -50 ,
     },
   }));
-function Header() {
+function Header({authenticated , image , name}) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+console.log(image)
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleLogout= () => {
+
+  }
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -143,6 +163,43 @@ function Header() {
                     />
                 </div>
                 </div>
+                {!authenticated ? (<Button
+                    className = {classes.button}
+                    color = "black"
+                    href="http://localhost:5000/auth/google"
+                    underline="none">
+                      Login
+                    </Button>) : (
+                    // <Button
+                    // className={classes.button}
+                    // color = "black"
+                    // href="http://localhost:5000/auth/logout"
+                    // underline="none">
+                    // Logout
+                    // </Button>
+                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                      Menu
+                    </Button>
+                    )}
+                    <Menu
+                      id="simple-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose}>
+                    <Avatar className={classes.avatar} src={image}/>{name}</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link to="/myaccount" >
+                        {'My Account'}
+                      </Link>
+                    </MenuItem>
+                      <MenuItem onClick={handleLogout}>
+                        <Link href="http://localhost:5000/auth/logout" >
+                        {'Logout'}
+                      </Link></MenuItem>
+                    </Menu>
                 <div className={classes.right}>
                 <Link to="/donate" className={classes.link}>
                 <Button

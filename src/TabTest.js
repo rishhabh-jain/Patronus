@@ -51,7 +51,7 @@ const useStyles = makeStyles({
 
 export default function CenteredTabs(){
     const classes = useStyles();
-  const routes= ["/posts" ,"/donate" , "/profile", "/help"]
+  const routes= ["/" ,"/donate" , "/adopt", "/help"]
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -81,17 +81,17 @@ export default function CenteredTabs(){
                 </Tabs>
             </Paper>
         </Toolbar>
-        <Fab color="secondary" aria-label="add" onClick={handleClickOpen} className={classes.fabButton}>
+        {/* <Fab color="secondary" aria-label="add" onClick={handleClickOpen} className={classes.fabButton}>
                 <AddIcon />
-        </Fab>
+        </Fab> */}
     </AppBar>
     }/> 
         <Switch>
-            <Redirect exact from="/" to="/posts"/>
-            <Route path="/posts" component={Post}/>
-            <Route path="/donate" component={Donate}/>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/help" component={Help}/>
+            {/* <Redirect exact from="/" to="/posts"/> */}
+            <Route exact path="/" component={Post}/>
+            <Route exact path="/donate" component={Donate}/>
+            <Route exact path="/adopt" component={Profile}/>
+            <Route exact path="/help" component={Help}/>
         </Switch>
     </BrowserRouter>
     <Dialog open={open} fullscreen onClose={handleClose} aria-labelledby="form-dialog-title">
